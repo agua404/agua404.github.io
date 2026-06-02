@@ -1,0 +1,27 @@
+body {
+  font-family: Hack, monospace;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  background-color: dodgerblue;
+  padding: 10px;
+}
+
+.container-text {
+  background-color: #f1f1f1;
+  border: 1px solid black;
+  padding: 10px;
+  font-size: 1.3rem;
+  text-align: left;
+}
+
+.container-latex {
+  background-color: #f1f1f1;
+  border: 1px solid black;
+  padding: 10px;
+  font-size: 1.5rem;
+  text-align: right;
+  flex-wrap: wrap;
+}
