@@ -4,6 +4,7 @@
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.17.0/dist/katex.min.css" integrity="sha384-vlBdW0r3AcZO/HboRPznQNowvexd3fY8qHOWkBi5q7KGgqJ+F48+DceybYmrVbmB" crossorigin="anonymous">
 		<script defer src="https://cdn.jsdelivr.net/npm/katex@0.17.0/dist/katex.min.js" integrity="sha384-AtrdNsnxl/75rvBneBVH7DtOvCxSVahR2zWqle1coBKd8DEmLoviqNeJSx64gNAs" crossorigin="anonymous"></script>
 		<script defer src="https://cdn.jsdelivr.net/npm/katex@0.17.0/dist/contrib/auto-render.min.js" integrity="sha384-bjyGPfbij8/NDKJhSGZNP/khQVgtHUE5exjm4Ydllo42FwIgYsdLO2lXGmRBf5Mz" crossorigin="anonymous"></script>
+		<script src="https://unpkg.com/function-plot/dist/function-plot.js"></script>
 		<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3/build/web/hack.css">
 		<link rel="stylesheet" href="./style.css">
 		<script>
@@ -27,8 +28,45 @@
 
 	<body>
 		<div class="container">
-			<div class="container-text">Concavity is the mathematical way of describing a function's shape and how it changes over time. Concavity is an important concept to understand when going further into calculus.</div>
-			<div class="container-latex">$$\frac{syrup}{pancakes}$$</div>
+			<div class="container-text">
+				<p class="writing">
+					Concavity is the mathematical way of describing a function's shape and how it changes over time. Concavity is an important concept to understand when going further into calculus. Take the following graph for example.
+					<br><br>
+					You can tell a functions concavity by looking at its change in slope over time. In general, there is concave up and concave down. A concave down functions slope over time will be going DOWN. In our example, this would be everything before 0 (x &gt; 0).
+					<br><br>
+					A concave UP function would be everything after 0 (x &lt; 0) because after 0 the slope goes up over time.
+					<br><br>
+					(0, 0) is known as the switching point, when the function goes from DOWN to UP concave.
+				</p>
+			</div>
+			<div class="container-latex" id="graph">
+				<p>$$f(x)=x^3-3x$$</p>
+				<script type="module">
+					// 1. Put the plot logic inside a reusable function
+					function drawGraph() {
+						// Dynamically grab the width of the parent container element
+						const containerWidth = document.getElementById('graph').clientWidth;
+						
+						functionPlot({
+							target: '#graph',
+							width: containerWidth, // <-- Uses the dynamic width instead of a hardcoded number
+							height: 400,           // You can keep height fixed, or scale it proportionally
+							yAxis: { domain: [-10, 10] },
+							xAxis: { domain: [-10, 10] },
+							grid: true,
+							data: [
+							{ fn: 'x^3-3*x', color: '#4f46e5', strokeWidth: 3 },
+							]
+							});
+						}
+						
+						// 2. Draw the graph when the page first loads
+						drawGraph();
+						
+						// 3. Redraw the graph whenever the browser window is resized
+						window.addEventListener('resize', drawGraph);
+				</script>
+			</div>
 		</div>
 	</body>
 </html>

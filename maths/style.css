@@ -2,6 +2,10 @@ body {
   font-family: Hack, monospace;
 }
 
+.writing {
+  line-height: 180%;
+}
+
 .container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
@@ -13,7 +17,7 @@ body {
   background-color: #f1f1f1;
   border: 1px solid black;
   padding: 10px;
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   text-align: left;
 }
 
