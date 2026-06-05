@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.17.0/dist/katex.min.css" integrity="sha384-vlBdW0r3AcZO/HboRPznQNowvexd3fY8qHOWkBi5q7KGgqJ+F48+DceybYmrVbmB" crossorigin="anonymous">
+		<script defer src="https://cdn.jsdelivr.net/npm/katex@0.17.0/dist/katex.min.js" integrity="sha384-AtrdNsnxl/75rvBneBVH7DtOvCxSVahR2zWqle1coBKd8DEmLoviqNeJSx64gNAs" crossorigin="anonymous"></script>
+		<script defer src="https://cdn.jsdelivr.net/npm/katex@0.17.0/dist/contrib/auto-render.min.js" integrity="sha384-bjyGPfbij8/NDKJhSGZNP/khQVgtHUE5exjm4Ydllo42FwIgYsdLO2lXGmRBf5Mz" crossorigin="anonymous"></script>
+		<script src="https://unpkg.com/function-plot/dist/function-plot.js"></script>
+		<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3/build/web/hack.css">
+		<link rel="stylesheet" href="./style.css">
+		<script>
+			document.addEventListener("DOMContentLoaded", function() {
+				renderMathInElement(document.body, {
+					// customised options
+					// • auto-render specific keys, e.g.:
+					delimiters: [
+					{left: '$$', right: '$$', display: true},
+					{left: '$', right: '$', display: false},
+					{left: '\\(', right: '\\)', display: false},
+					{left: '\\[', right: '\\]', display: true}
+					],
+					// • rendering keys, e.g.:
+					throwOnError : false
+					});
+					});
+		</script>
+		<title>Math Guide</title>
+	</head>
+
+	<body>
+		<div class="container">
+			<div class="container-text">
+				<p class="writing">
+					Polynomials in mathmatics refer to a general set of functions that meet the following criteria:
+				</p>
+				<ul>
+					<li>Must contain at least one term.</li>
+					<li>Must not have infinate terms</li>
+					<li>Criteria for a term: Must not contain the following: division of variables, or negative exponentials</li>
+					<li>Can contain multiple variables (x, y, z)</li>
+					<li>Does not require a variable</li>
+				</ul>
+			</div>
+			<div class="container-latex" id="graph">
+				<p>$$f(x)=x^3-4x^2$$</p>
+				<script type="module">
+					// 1. Put the plot logic inside a reusable function
+					function drawGraph() {
+						// Dynamically grab the width of the parent container element
+						const containerWidth = document.getElementById('graph').clientWidth;
+						
+						functionPlot({
+							target: '#graph',
+							width: containerWidth, // <-- Uses the dynamic width instead of a hardcoded number
+							height: 400,           // You can keep height fixed, or scale it proportionally
+							yAxis: { domain: [-10, 10] },
+							xAxis: { domain: [-10, 10] },
+							grid: true,
+							data: [
+							{ fn: 'x^3-4x^2', color: '#076678', strokeWidth: 3, graphType: 'polyline' },
+							]
+							});
+						}
+						
+						// 2. Draw the graph when the page first loads
+						drawGraph();
+						
+						// 3. Redraw the graph whenever the browser window is resized
+						window.addEventListener('resize', drawGraph);
+				</script>
+			</div>
+			<div class="container-text">
+				<p class="writing">
+					Polynomials have a number of key parts that can be found, just by looking at them. The degree of a polynomial is largest exponent that is attached to a variable in the equation. An exmaple of this is on the example equation on the right, were $x$ is to the power of 3. This is the largest exponent in the polynomial is 3 so this is the degree. While we are talking about exponentials and polynomials it might be useful to mention standered form. Standered form of a polynomial is quite simple, the terms are ordered highest exponential to lowest exponential. If two terms have the same exponent then simply order them by thier coefficent (variables come before non variables).
+					<br><br>
+					There are methods of finding the x intercepts, the shape of the function, and any y intercepts. This guide will go over them.
+					<br><br>
+					Note that the x intercepts can only be found if the polynomial is in factored form or is a quadratic. This guide covers what factored form is but does not go over how to factor. For a guide on this, go here:
+				</p>
+				<a href="https://www.khanacademy.org/test-prep/v2-sat-math/x0fcc98a58ba3bea7:advanced-math-easier/x0fcc98a58ba3bea7:factoring-quadratic-and-polynomial-expressions-easier/a/v2-sat-lesson-factoring-quadratic-and-polynomial-expressions">Polynomial guide</a>
+				<p class="writing">
+					Factored form varies from equation to equation but looks something like this:
+					$$(x+2)\cdot(x-2)$$
+					Solving for the x intercepts in factored form is very simple. All you need to do is set each linear term equal to zero and solve for x.
+					<br>
+					This is shown on the right.
+					<br><br>
+					If an equation is in the standered quadratic form ($ax^2+bx-c$, or similar), the quadratic formula can be used to solve for the x intercepts. The quadratic formula looks something like this:
+					<br>
+					$$x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}$$
+					If the equation is in standered quadratic form, $ax^2-bx-c$, where $a$, $b$, and $c$ are constents (not variables) simply plug them into the quadratic formula and solve. Example on the right.
+					<br><br>
+					Next up is the y intercept. This one is super easy because a function can only cross $y=0$ once (or any y point for that matter). To solve for the y intercept of any polynomial or function just set it equal to zero. Simple example:
+					<br>
+					$$f(x)=x+1$$
+					$$0=x+1$$
+					$$x=-1$$
+					The y intercept here is -1.
+					<br><br>
+					Finaly lets talk about function shape. A functions shape can be determaned just by looking at it and by doing almost no math. Take the function:
+					<br>
+					$$(x+4)^2(x+1)$$
+					<br>
+					I know that this function will come up from $-\infty$ and bounce off the graph at 4, then strikethrough at 1. Finally it will accend into the heavens and go up forever ($\lim x \to \infty$). Did I cheat and look at a graph? Nope!
+					<br><br>
+					The first thing that I did was find the x intercepts. This is essential to know when finding the shape because you need to know where the line intercepts the x intercept to make an accurate graph with labeled points. The next thing I did is look at the number of x's in the equation. There are three when all the exponents are expanded out ($(x+4)^2=(x+4)(x+4)$) and this ment that both lines that infinately extend would extend in opposite directions (think of a linearish function). I knew this because there were three and three is an odd number. When you have an odd number of x's in the equation the line must extend in opposite directions. When you have an even nunber of x's in the function both ends of the line must extend in the same direction. The way a function behaves when it extends infinatly is known as end behavior Then I looked at what power each linear term was set to. The one that was $(x+4)^2$ to an even power so I knew it would bounce off the x intercept. The other linear term only had one x so I knew that it would strike through the x intercept. And I know what x intercept points the linear terms were tied to so I just corresponded those with the fact that if they bounced or not.
+				</p>
+			</div>
+			<div class="container-latex" id="graph2">
+				$$example$$
+				$$f(x)=x^3-4x^2$$
+				<br><br>
+				$$factoring\ example$$
+				$$(x+2)\cdot(x-2)$$
+				$$x+2=0$$
+				$$x=-2$$
+				$$x-2=0$$
+				$$x=2$$
+				$$The\ x\ intercepts\ are\ (2,0)\ and\ (-2,0)$$
+				<br><br>
+				$$Quadratic\ Example$$
+				$$x^2 - 5x + 6 = 0$$
+				$$a=1$$
+				$$b=-5$$
+				$$c=6$$
+				$$Plug\ In$$
+				$$x=\frac{5\pm\sqrt{-5^2-4\cdot 1 \cdot 6}}{2\cdot1}$$
+				$$x=\frac{5\pm\sqrt{25-24}}{2}$$
+				$$x=\frac{5\pm\sqrt{1}}{2}$$
+				$$x=\frac{5\pm1}{2}$$
+				$$Solve\ for\ both\ +\ and\ -$$
+				$$x=\frac{5+1}{2}$$
+				$$x=\frac{6}{2}$$
+				$$x=3$$
+				$$x=\frac{5-1}{2}$$
+				$$x=\frac{4}{2}$$
+				$$x=2$$
+				$$The\ X\ intercepts\ are\ 3\ and\ 2$$
+			</div>
+			<div class="container-text">
+				<h2>Practice Problem/Real World Example: The insanity roller coster</h2>
+				<p class="writing">
+					There is a roller coster at a theme park. The coster's height over time can be modeled with the following function:
+					$$f(x)=(x+2)^2(x-2)^2(x-8)^8$$
+					Find...
+					When the roller coster is at zero feet.
+					<br>
+					How many times the roller coster is at zero feet.
+					<br>
+					Does the roller coster ever go underground?
+					<br>
+					Where the roller coster is coming from and where it is going (end behavior).
+					<br>
+				</p>
+				<details id="graph3">
+					<summary>
+						$Answear$
+					</summary>
+					<script type="module">
+						// 1. Put the plot logic inside a reusable function
+						function drawGraph() {
+							// Dynamically grab the width of the parent container element
+							const containerWidth = document.getElementById('graph3').clientWidth;
+							
+							functionPlot({
+								target: '#graph3',
+								width: containerWidth, // <-- Uses the dynamic width instead of a hardcoded number
+								height: 400,           // You can keep height fixed, or scale it proportionally
+								yAxis: { domain: [-1000, 5000] },
+								xAxis: { domain: [-10, 10] },
+								grid: true,
+								data: [
+								{ fn: '(x+2)^2*(x-2)^2*(x-8)^2', color: '#076678', strokeWidth: 3, graphType: "polyline"},
+								]
+								});
+							}
+							
+							// 2. Draw the graph when the page first loads
+							drawGraph();
+							
+							// 3. Redraw the graph whenever the browser window is resized
+							window.addEventListener('resize', drawGraph);
+					</script>
+					The roller coster touches the ground three times.
+					The roller coster touches the ground at 2, -2, and 8.
+					The roller coster never goes underground.
+					The roller coster comes from $\infty$ and goes to $\infty$
+				</details>
+			</div>
+			<div class="container-text">
+				<h2>Practice Problem/Real World Example: Insanity roller coster 2</h2>
+				<p class="writing">
+					A roller coster starts underground and moves upwards. One second into the ride you reach the surface and climb up. You then dive back underground and go from above ground to underground three seconds in. You reimmerge from the ground after 10 seconds and accend into the heavens. What is an equation that compaires your height relative to sea level, (above ground under ground) where sea level is $y=0$, to the time the roller coster took?
+				</p>
+				<details>
+					<summary>
+						$Answear$
+					</summary>
+					<p>
+						$(x-1)(x-3)(x-10)^3$
+						<br>
+						or
+						<br>
+						$(x-1)(x-3)(x-10)$
+					</p>
+				</details>
+			</div>
+		</div>
+	</body>
+</html>

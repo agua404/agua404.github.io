@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.17.0/dist/katex.min.css" integrity="sha384-vlBdW0r3AcZO/HboRPznQNowvexd3fY8qHOWkBi5q7KGgqJ+F48+DceybYmrVbmB" crossorigin="anonymous">
+		<script defer src="https://cdn.jsdelivr.net/npm/katex@0.17.0/dist/katex.min.js" integrity="sha384-AtrdNsnxl/75rvBneBVH7DtOvCxSVahR2zWqle1coBKd8DEmLoviqNeJSx64gNAs" crossorigin="anonymous"></script>
+		<script defer src="https://cdn.jsdelivr.net/npm/katex@0.17.0/dist/contrib/auto-render.min.js" integrity="sha384-bjyGPfbij8/NDKJhSGZNP/khQVgtHUE5exjm4Ydllo42FwIgYsdLO2lXGmRBf5Mz" crossorigin="anonymous"></script>
+		<script src="https://unpkg.com/function-plot/dist/function-plot.js"></script>
+		<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3/build/web/hack.css">
+		<link rel="stylesheet" href="./style.css">
+		<script>
+			document.addEventListener("DOMContentLoaded", function() {
+				renderMathInElement(document.body, {
+					// customised options
+					// • auto-render specific keys, e.g.:
+					delimiters: [
+					{left: '$$', right: '$$', display: true},
+					{left: '$', right: '$', display: false},
+					{left: '\\(', right: '\\)', display: false},
+					{left: '\\[', right: '\\]', display: true}
+					],
+					// • rendering keys, e.g.:
+					throwOnError : false
+					});
+					});
+		</script>
+		<title>Math Guide</title>
+	</head>
+
+	<body>
+		<div class="container">
+			<div class="container-text">
+				<p class="writing">
+					Exponential functions are a way of descibing an exponential relationship between two numbers. Exponential relationships are when one number is too the power of another, and the variable is the power. The simplest exponential function is defined as $f(x)=2^x$. When an exponential function's x value increases its y value grows exponentialy. A visual graph is depicted to the right of what an exponential function might look like.
+				</p>
+			</div>
+			<div class="container-latex" id="graph">
+				<p>$$f(x)=2^x$$</p>
+				<script type="module">
+					// 1. Put the plot logic inside a reusable function
+					function drawGraph() {
+						// Dynamically grab the width of the parent container element
+						const containerWidth = document.getElementById('graph').clientWidth;
+						
+						functionPlot({
+							target: '#graph',
+							width: containerWidth, // <-- Uses the dynamic width instead of a hardcoded number
+							height: 400,           // You can keep height fixed, or scale it proportionally
+							yAxis: { domain: [-10, 10] },
+							xAxis: { domain: [-10, 10] },
+							grid: true,
+							data: [
+							{ fn: '2^x', color: '#076678', strokeWidth: 3, graphType: 'polyline' },
+							]
+							});
+						}
+						
+						// 2. Draw the graph when the page first loads
+						drawGraph();
+						
+						// 3. Redraw the graph whenever the browser window is resized
+						window.addEventListener('resize', drawGraph);
+				</script>
+			</div>
+			<div class="container-text">
+				<p class="writing">
+					Exponential functions have many compenents that can be changed and modified to change thier behavior. The general form of an exponential function is shown on the right. In this form, $b$ is the exponential base and controls the rate of growth of the function. $b$ also controls what the function is equal too when x=1 (as long as q is 0). We can predict what y will be at one by multiplying b by a. The rate of growth and y-intercept can be modified by changing $a$. $q$ is also a method of controlling the the y-intercept, except changing q will change the starting value of the exponential function.
+					<br><br>
+					There are other ways that an exponential equation can be modified. On the right are two lines that have been plotted. Both have had thier exponents modified but which equation is what graph? Try and see if you can figure it out and check you answear when done.
+				</p>
+				<details>
+					<summary>
+						$Answear$
+					</summary>
+					The red equation is equation 2
+					<br>
+					The blue equation is equation 1
+					<br>
+					<p>Why does this happen? Why is equation 2 initally larger than equation one but equation one gets bigger over time? Equation 2 is larger initally because it starts off with an exponential value that is always two higher. However equation one always has double the exponential value, and this means the in the smaller exponential values equation 2 will produce initally larger results. However as numbers get larger, doubling them will always produce a bigger y value than just adding two to them.</p>
+				</details>
+			</div>
+			<div class="container-latex" id="graph2">
+				$$general\ form$$
+				$$f(x)=ab^x+q$$
+				<br><br>
+				$$Equation\ 1:\ f(x)=2^{2x}$$
+				$$Equation\ 2:\ f(x)=2^{x+2}$$
+				<script type="module">
+					// 1. Put the plot logic inside a reusable function
+					function drawGraph() {
+						// Dynamically grab the width of the parent container element
+						const containerWidth = document.getElementById('graph2').clientWidth;
+						
+						functionPlot({
+							target: '#graph2',
+							width: containerWidth, // <-- Uses the dynamic width instead of a hardcoded number
+							height: 400,           // You can keep height fixed, or scale it proportionally
+							yAxis: { domain: [-10, 10] },
+							xAxis: { domain: [-10, 10] },
+							grid: true,
+							data: [
+							{ fn: '2^(2x)', color: '#076678', strokeWidth: 3, graphType: "polyline"},
+							{ fn: '2^(x+2)', color: '#9d0006', strokeWidth: 3, graphType: "polyline"},
+							]
+							});
+						}
+						
+						// 2. Draw the graph when the page first loads
+						drawGraph();
+						
+						// 3. Redraw the graph whenever the browser window is resized
+						window.addEventListener('resize', drawGraph);
+				</script>
+				<p>Sorry this graph as problems, pan around to see the whole equation</p>
+			</div>
+			<div class="container-text" id="graph3">
+				<h2>Practice Problem/Real World Example: Mosquitos</h2>
+				<p class="writing">
+					The following graph shows the population of mosquitos over on an unkown island after people have settled there. 1 on the graph repersents 1000 mosquitos. x = 0 is the starting point when people initally arive on the island. The equation is unkown but is in the form of $f(x)=ab^x+q$. Find it.
+				</p>
+				<script type="module">
+					// 1. Put the plot logic inside a reusable function
+					function drawGraph() {
+						// Dynamically grab the width of the parent container element
+						const containerWidth = document.getElementById('graph3').clientWidth;
+						
+						functionPlot({
+							target: '#graph3',
+							width: containerWidth, // <-- Uses the dynamic width instead of a hardcoded number
+							height: 400,           // You can keep height fixed, or scale it proportionally
+							yAxis: { domain: [-10, 10] },
+							xAxis: { domain: [-10, 10] },
+							grid: true,
+							data: [
+							{ fn: '2*1.5^x', color: '#076678', strokeWidth: 3, graphType: "polyline"},
+							]
+							});
+						}
+						
+						// 2. Draw the graph when the page first loads
+						drawGraph();
+						
+						// 3. Redraw the graph whenever the browser window is resized
+						window.addEventListener('resize', drawGraph);
+				</script>
+				<details>
+					<summary>
+						$Answear$
+					</summary>
+					<p>
+						The correct equation is $f(x)=2*1.5^x$.
+					</p>
+				</details>
+			</div>
+			<div class="container-text">
+				<h2>Practice Problem/Real World Example: Evil Bank</h2>
+				<p class="writing">
+					You are a banker. Johnathan has found himself in a bit of finantial trouble. He owes the bank money and is in debt. His initial principle, or owed amount is 10000, and it doubles every month. However two months have already passed, so he owes more money. Write an exponential equation to model this situation.
+				</p>
+				<details>
+					<summary>
+						$Answear$
+					</summary>
+					<p>
+						The second derivative is: $f(x)=10000\cdot2^{x+2}$
+					</p>
+				</details>
+			</div>
+		</div>
+	</body>
+</html>
